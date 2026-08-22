@@ -1,5 +1,3 @@
-//Ahad Rihaj Mulani
-
 // ArrayList<Integer> arr = new ArrayList<>();
 
 // arr.add(10);
