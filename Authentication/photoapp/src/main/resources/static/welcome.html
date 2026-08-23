@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="card photo-container">
+        <h2 id="greeting">Welcome!</h2>
+        <img src="images/ChatGPT Image Jul 9, 2026, 10_21_35 PM.png" alt="Welcome photo">
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        // Guard: check session before showing the page content
+        (async function checkLogin() {
+            const res = await fetch("/api/session");
+            if (!res.ok) {
+                window.location.href = "login.html";
+            } else {
+                const data = await res.json();
+                document.getElementById("greeting").textContent = "Welcome, " + data.username + "!";
+            }
+        })();
+
+        async function logout() {
+            await fetch("/api/logout", { method: "POST" });
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
