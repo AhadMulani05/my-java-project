@@ -1,4 +1,5 @@
 // ArrayList<Integer> arr = new ArrayList<>();
+//ahad rihaj mulani
 
 // arr.add(10);
 // arr.add(0, 20);
