@@ -1,22 +1,24 @@
-package com.example.CrudSpringBootDemo.entity;
+package com.example.SpringBootCrudProject.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
 public class Student {
+
     @Id
-    private int id;
+    private Long id;
     private String name;
-    private String email;
     private int age;
+    private String email;
+    private int rollNo;
     private String subject;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -28,6 +30,14 @@ public class Student {
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -36,12 +46,12 @@ public class Student {
         this.email = email;
     }
 
-    public int getAge() {
-        return age;
+    public int getRollNo() {
+        return rollNo;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setRollNo(int rollNo) {
+        this.rollNo = rollNo;
     }
 
     public String getSubject() {
