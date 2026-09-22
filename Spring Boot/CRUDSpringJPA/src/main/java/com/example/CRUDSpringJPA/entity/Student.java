@@ -1,4 +1,4 @@
-package com.example.SpringBootCrudProject.entity;
+package com.example.CRUDSpringJPA.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -9,7 +9,6 @@ public class Student {
     @Id
     private Long id;
     private String name;
-    private int age;
     private String email;
     private int rollNo;
     private String subject;
@@ -28,14 +27,6 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public String getEmail() {
