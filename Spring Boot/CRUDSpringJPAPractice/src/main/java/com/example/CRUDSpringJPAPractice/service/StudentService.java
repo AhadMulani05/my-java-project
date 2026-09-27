@@ -2,7 +2,6 @@ package com.example.CRUDSpringJPAPractice.service;
 
 import com.example.CRUDSpringJPAPractice.entity.Student;
 import com.example.CRUDSpringJPAPractice.repository.StudentRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
