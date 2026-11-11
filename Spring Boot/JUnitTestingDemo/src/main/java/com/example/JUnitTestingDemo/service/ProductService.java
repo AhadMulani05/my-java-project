@@ -4,6 +4,8 @@ import com.example.JUnitTestingDemo.entity.Product;
 import com.example.JUnitTestingDemo.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductService {
 
@@ -33,6 +35,11 @@ public class ProductService {
 
         return productRepository.save(product);
 
+    }
+
+    public List<Product> findAllProduct() {
+
+        return productRepository.findAll();
     }
 
 }
