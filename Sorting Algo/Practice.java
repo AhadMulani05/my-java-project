@@ -1,145 +1,183 @@
-import java.util.Arrays;
-
 public class Practice {
-    // public static void bubblesort(int[] arr, int n) {
-    //     for(int i=0;i<n-1;i++) {
-    //         for(int j=0;j<n-i-1;j++) {
-    //             if(arr[j] > arr[j+1]) {
-    //                 int temp = arr[j];
-    //                 arr[j] = arr[j+1];
-    //                 arr[j+1] = temp;
-    //             }
-    //         }
-    //     }
-    // }
+    public static void main(String[] args) {
+        System.out.println("Bubble Sort:- ");
+        bubbleSort();
 
-    // public static void selectionSort(int[] arr, int n) {
-    //     for(int i=0; i<n-1; i++) {
-    //         int minIdx = i;
-    //         for(int j=i+1;j<n;j++) {
-    //             if(arr[j] < arr[minIdx]) {
-    //                 minIdx = j;
-    //             }
-    //         }
+        System.out.println("Selection Sort:- ");
+        selectionSort();
 
-    //         int temp = arr[i];
-    //         arr[i] = arr[minIdx];
-    //         arr[minIdx] = temp;
-    //     }
-    // }
+        System.out.println("Insertion Sort:- ");
+        insertionSort();
 
-    // public static void insertionSort(int[] arr, int n) {
-    //     for(int i=1; i<n; i++) {
-    //         int curr = arr[i];
-    //         int prev = i-1;
+        System.out.println("Merge Sort:- ");
+        mergeSort();
 
-    //         while(prev >= 0 && arr[prev] > curr) {
-    //             arr[prev+1] = arr[prev];
-    //             prev--;
-    //         }
+        System.out.println("Quick Sort:- ");
+        quickSort();
+    }
 
-    //         arr[prev+1] = curr;
-    //     }
-    // }
+    public static void bubbleSort() {
+        int[] nums = {4,6,2,5,7,8,1,3};
+        int n = 8;
 
-    // public static void solve(int[] arr, int s, int mid, int e) {
-    //     int[] temp = new int[e-s+1];
-    //     int i = s, j = mid+1, k = 0;
-
-    //     while(i <= mid && j <= e) {
-    //         if(arr[i] <= arr[j]) {
-    //             temp[k++] = arr[i++];
-    //         }
-    //         else temp[k++] = arr[j++];
-    //     }
-
-    //     while(i <= mid) {
-    //         temp[k++] = arr[i++];
-    //     }
-
-    //     while(j <= e) {
-    //         temp[k++] = arr[j++];
-    //     }
-
-    //     for(int idx=0; idx<temp.length; idx++) {
-    //         arr[idx+s] = temp[idx];
-    //     }
-    // }
-
-    // public static void mergeSort(int[] arr, int s, int e) {
-    //     if(s < e) {
-    //         int mid = s+(e-s)/2;
-
-    //         mergeSort(arr, s, mid);
-    //         mergeSort(arr, mid+1, e);
-
-    //         solve(arr, s, mid, e);
-    //     }
-    // }
-
-    public static int solve(int[] arr, int s, int e) {
-        int pivot = arr[e];
-        int i = s-1;
-
-        for(int j=s; j<e; j++) {
-            if(arr[j] < pivot) {
-                i++;
-
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+        for(int i=0; i<n-1; i++) {
+            for(int j=0; j<n-i-1; j++) {
+                if(nums[j] > nums[j+1]) {
+                    int temp = nums[j];
+                    nums[j] = nums[j+1]; 
+                    nums[j+1] = temp;
+                }
             }
         }
 
-        int temp = arr[i+1];
-        arr[i+1] = arr[e];
-        arr[e] = temp;
+        for(int num : nums) {
+            System.out.print(num + " ");
+        }
 
-        return i+1;
+        System.out.println();
     }
 
-    public static void quickSort(int[] arr, int s, int e) {
-        if(s < e) {
-            int pivotIdx = solve(arr, s, e);
+    public static void selectionSort() {
+        int[] nums = {4,6,2,5,7,8,1,3};
+        int n = 8;
 
-            quickSort(arr, s, pivotIdx-1);
-            quickSort(arr, pivotIdx+1, e);
+        for(int i=0; i<n-1; i++) {
+            int minIdx = i;
+
+            for(int j=i; j<n; j++) {
+                if(nums[j] < nums[minIdx]) {
+                    minIdx = j;
+                }
+            }
+
+            int temp = nums[i];
+            nums[i] = nums[minIdx];
+            nums[minIdx] = temp; 
+        }
+
+        for(int num : nums) {
+            System.out.print(num + " ");
+        }
+        
+        System.out.println();
+    }
+
+    public static void insertionSort() {
+        int[] nums = {4,6,2,5,7,8,1,3};
+        int n = 8;
+
+        for(int i=1; i<n; i++) {
+            int curr = nums[i];
+            int prev = i-1;
+
+            while(prev >= 0 && nums[prev] > curr) {
+                nums[prev+1] = nums[prev];
+                prev--;
+            }
+
+            nums[prev+1] = curr;
+        }
+
+        for(int num : nums) {
+            System.out.print(num + " ");
+        }
+
+        System.out.println();
+    }
+
+    public static void mergeSort() {
+        int[] nums = {4,6,2,5,7,8,1,3};
+        int n = 8;
+
+        solveMergeSort(nums, 0, n-1);
+
+        for(int num : nums) {
+            System.out.print(num + " ");
+        }
+
+        System.out.println();
+    }
+
+    public static void solveMergeSort(int[] nums, int s, int e) {
+        if(s < e) {
+            int mid = s+(e-s)/2;
+
+            solveMergeSort(nums, s, mid);
+            solveMergeSort(nums, mid+1, e);
+
+            merge(nums, s, mid, e);
         }
     }
 
-    public static void main(String[] args) {
-        //quick sort
-        int[] arr = {5,1,4,3,2};
-        quickSort(arr, 0, arr.length-1);
-        System.out.println(Arrays.toString(arr));
-
-
-
-        // //merge sort
-        // int[] arr = {5,1,4,2,3};
-        // mergeSort(arr, 0, arr.length-1);
-        // System.out.println(Arrays.toString(arr));
-
-
-        // //insertion sort
-        // int[] arr = {5,1,4,3,2};
-        // int n = 5;
-
-        // insertionSort(arr, n);
-        // System.out.println(Arrays.toString(arr));
-
-
-        //selection sort
-        // int[] arr = {5,1,4,3,2};
-        // int n = 5;
-
-        // selectionSort(arr, n);
-        // System.out.println(Arrays.toString(arr));
+    public static void merge(int[] nums, int s, int mid, int e) {
+        int[] temp = new int[e-s+1];
         
-        // //bubble sort
-        // int[] arr = {5,1,4,2,3};
-        // int n = arr.length;
-        // bubblesort(arr, n);
-        // System.out.println(Arrays.toString(arr));
+        int i = s, j = mid+1, k = 0;
+
+        while(i <= mid && j <= e) {
+            if(nums[i] <= nums[j]) {
+                temp[k++] = nums[i++];
+            }
+            else {
+                temp[k++] = nums[j++];
+            }
+        }
+
+        while(i <= mid) {
+            temp[k++] = nums[i++];
+        }
+        
+        while(j <= e) {
+            temp[k++] = nums[j++];
+        }
+
+        for(int idx=0; idx<temp.length; idx++) {
+            nums[idx + s] = temp[idx];
+        }
+    }
+
+    public static void quickSort() {
+        int[] nums = {4,6,2,5,7,8,1,3};
+        int n = 8;
+
+        solveQuickSort(nums, 0, n-1);
+
+        for(int num : nums) {
+            System.out.print(num + " ");
+        }
+
+        System.out.println();
+    }
+
+    public static void solveQuickSort(int[] nums, int s, int e) {
+        if(s < e) {
+            int pIdx = solvePartition(nums, s, e);
+
+            solveQuickSort(nums, s, pIdx-1);
+            solveQuickSort(nums, pIdx+1, e);
+        }
+    }
+
+    public static int solvePartition(int[] nums, int s, int e) {
+        int pivot = nums[s];
+
+        int i = s, j = e;
+
+        while(i < j) {
+            while(nums[i] <= pivot) i++;
+            while(nums[j] > pivot) j--;
+
+            if(i < j) {
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+            }
+        }
+
+        int temp = nums[s];
+        nums[s] = nums[j];
+        nums[j] = temp;
+
+        return j;
     }
 }
